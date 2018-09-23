@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\File;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\Image\Manipulations;
 
 class Post extends Model implements HasMedia
 {
@@ -62,7 +64,7 @@ class Post extends Model implements HasMedia
      */
     public function getPublishedAttribute()
     {
-        return now() > $this->scheduled_for || $this->scheduled_for === null;
+        return now() > $this->scheduled_for;
     }
 
     /**
@@ -115,5 +117,14 @@ class Post extends Model implements HasMedia
                 return $file->mimeType === 'image/jpeg';
             })
             ->singleFile();
+    }
+
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+              ->fit(Manipulations::FIT_CROP, 150, 150);
+
+        $this->addMediaConversion('medium')
+            ->fit(Manipulations::FIT_CROP, 400, 400);
     }
 }

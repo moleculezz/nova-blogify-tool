@@ -4,6 +4,10 @@ namespace Mattmangoni\NovaBlogifyTool;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
+use Mattmangoni\NovaBlogifyTool\Resources\Category;
+use Mattmangoni\NovaBlogifyTool\Resources\Post;
+use Mattmangoni\NovaBlogifyTool\Resources\Comment;
+use Mattmangoni\NovaBlogifyTool\Resources\Tag;
 
 class NovaBlogifyTool extends Tool
 {
@@ -15,6 +19,13 @@ class NovaBlogifyTool extends Tool
     {
         Nova::script('nova-blogify-tool', __DIR__.'/../dist/js/tool.js');
         Nova::style('nova-blogify-tool', __DIR__.'/../dist/css/tool.css');
+
+        Nova::resources([
+            Category::class,
+            Post::class,
+            Comment::class,
+            Tag::class,
+        ]);
     }
 
     /**

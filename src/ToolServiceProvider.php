@@ -2,9 +2,10 @@
 
 namespace Mattmangoni\NovaBlogifyTool;
 
+use Laravel\Nova\Nova;
+use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Mattmangoni\NovaBlogifyTool\Bootstrap\Blogify;
 use Mattmangoni\NovaBlogifyTool\Http\Middleware\Authorize;
 
 class ToolServiceProvider extends ServiceProvider
@@ -19,17 +20,22 @@ class ToolServiceProvider extends ServiceProvider
 
         $this->app->booted(function () {
             $this->routes();
+        });
 
-            Blogify::injectToolResources();
+        Nova::serving(function (ServingNova $event) {
+            //
         });
 
         $this->publishes([
             $this->configPath() => config_path('nova-blogify.php'),
         ], 'nova-blogify-config');
+
+        //$this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**
      * Register the tool's routes.
+     *
      * @return void
      */
     protected function routes()

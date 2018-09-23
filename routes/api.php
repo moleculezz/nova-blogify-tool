@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Mattmangoni\NovaBlogifyTool\Bootstrap\Blogify;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +14,6 @@ use Mattmangoni\NovaBlogifyTool\Bootstrap\Blogify;
 |
 */
 
-Route::get('/check-migrations', function (Request $request) {
-    return response()->json([
-        'installed' => Blogify::isInstalled(),
-    ], 200);
-});
-
-Route::get('/migrate-tables', 'Mattmangoni\NovaBlogifyTool\Http\Controllers\MigrationController@execute');
-Route::get('/reset-content', 'Mattmangoni\NovaBlogifyTool\Http\Controllers\ResetController@execute');
-Route::get('/uninstall', 'Mattmangoni\NovaBlogifyTool\Http\Controllers\UninstallController@execute');
+// Route::get('/endpoint', function (Request $request) {
+//     //
+// });
