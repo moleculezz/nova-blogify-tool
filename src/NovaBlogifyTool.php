@@ -20,8 +20,6 @@ class NovaBlogifyTool extends Tool
         Nova::script('nova-blogify-tool', __DIR__.'/../dist/js/tool.js');
         Nova::style('nova-blogify-tool', __DIR__.'/../dist/css/tool.css');
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-
         Nova::resources([
             Category::class,
             Post::class,

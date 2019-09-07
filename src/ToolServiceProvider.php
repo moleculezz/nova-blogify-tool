@@ -30,7 +30,7 @@ class ToolServiceProvider extends ServiceProvider
             $this->configPath() => config_path('nova-blogify.php'),
         ], 'nova-blogify-config');
 
-        //$this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**
