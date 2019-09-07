@@ -62,12 +62,12 @@ class Post extends Resource
                 ->rules(['required']),
 
             Images::make('Image', config('nova-blogify.image_settings.collection'))
-                ->usingConversion('thumb')
+                ->conversionOnIndexView('thumb')
                 ->onlyOnIndex(),
 
-                Images::make('Image', config('nova-blogify.image_settings.collection'))
-                    ->usingConversion('medium')
-                    ->hideFromIndex(),
+            Images::make('Image', config('nova-blogify.image_settings.collection'))
+                ->conversionOnIndexView('medium')
+                ->hideFromIndex(),
 
             BelongsTo::make('Category', 'category', Category::class)
                 ->sortable()
