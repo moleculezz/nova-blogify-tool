@@ -10,7 +10,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1.0",
-        "jameslkingsley/nova-media-library-field": "^1.0",
+        "ebess/advanced-nova-media-library": "^2.8",
         "spatie/laravel-medialibrary": "^7.5"
     },
     "autoload": {

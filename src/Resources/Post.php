@@ -16,7 +16,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Mattmangoni\NovaBlogifyTool\Metrics\Posts\NewPosts;
 use Mattmangoni\NovaBlogifyTool\Metrics\Posts\PostsTrend;
-use Kingsley\NovaMediaLibrary\Fields\Image;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class Post extends Resource
 {
@@ -61,11 +61,11 @@ class Post extends Resource
                 ->sortable()
                 ->rules(['required']),
 
-            Image::make('Image', config('nova-blogify.image_settings.collection'))
+            Images::make('Image', config('nova-blogify.image_settings.collection'))
                 ->usingConversion('thumb')
                 ->onlyOnIndex(),
 
-                Image::make('Image', config('nova-blogify.image_settings.collection'))
+                Images::make('Image', config('nova-blogify.image_settings.collection'))
                     ->usingConversion('medium')
                     ->hideFromIndex(),
 
